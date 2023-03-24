@@ -1,3 +1,20 @@
+.GoalsList{
+    height: 35em;
+}
+
 .Goals{
-    height: 80em;
+    display: block;
+    margin: 10px auto 10px auto;
+    width: 450px;
+    height: 40px;
+    background: #D6D7D9;
+    padding: 20px 15px 15px 15px;
+    text-align: left;
+    text-decoration: none;
+    border-radius: 5px;
+    border-style: solid ;
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;;
+
 }
