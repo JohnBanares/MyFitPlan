@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Activities</title>
+  <link rel="stylesheet" href="General.css" media="screen">
+  <link rel="stylesheet" href="GoalsAdd.css" media="screen">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+/>
+</head>
+
+<body class="" data-lang="en">
+  <header>
+    <div  class="Header">
+      <a href="Home.html" ><img src="images/Home.png" class="HomeButton" alt=""></a>
+      <p class="HeaderText">Goals</p>
+      <a href="Profile.html" ><img src="images/Profile.png" class="ProfileIcon" alt=""></a>
+    </div>
+  </header>
+
+  <main>
+    <form method="POST" action="submit.php">
+      <p class="instructions">1. Pick a day to set a goal</p>
+      <div class="holder">
+        <div class="calendar">
+          <div class="month">
+            <i class="fas fa-angle-left prev"></i>
+            <div class="date">
+              <h1></h1>
+              <p></p>
+            </div>
+            <i class="fas fa-angle-right next"></i>
+          </div>
+          <div class="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+          </div>
+          <div class="days"></div>
+          <input type="hidden" name="selectedDate" id="selectedDate">
+        </div>
+      </div>
+
+      <p class="instructions">2. What is your goal</p>
+      <input type="text" id="gtext" name="goaltext" placeholder="Enter">
+      
+      <div class="BottomGoalsAddButtons">
+        <a href="Goals.html" class="back">&larr; Back</a>
+        <button type="submit" class="confirm">&check; Confirm</button>
+      </div>
+    </form>
+    
+    <!-- <div class="holder">
+      <div class="calendar">
+        <div class="month">
+          <i class="fas fa-angle-left prev"></i>
+          <div class="date">
+            <h1></h1>
+            <p></p>
+          </div>
+          <i class="fas fa-angle-right next"></i>
+        </div>
+        <div class="weekdays">
+          <div>Sun</div>
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+        </div>
+        <div class="days"></div>
+      </div>
+    </div> -->
+
+    <!-- <div id="calendar">
+      <div class="header">
+        <button id="prev">&lt;</button>
+        <h2 id="month-year"></h2>
+        <button id="next">&gt;</button>
+      </div>
+      <div class="days-header">
+        <div class="day-header">Sun</div>
+        <div class="day-header">Mon</div>
+        <div class="day-header">Tue</div>
+        <div class="day-header">Wed</div>
+        <div class="day-header">Thu</div>
+        <div class="day-header">Fri</div>
+        <div class="day-header">Sat</div>
+      </div>
+      <div class="days"></div>
+    </div>
+     -->
+
+
+    <!-- <div id="calendar">
+      <div class="header">
+        <button id="prev">&lt;</button>
+        <h2 id="month-year"></h2>
+        <button id="next">&gt;</button>
+      </div>
+      <div class="days"></div>
+    </div> -->
+        
+
+  
+  
+    <!-- <section class="BackHome">
+      <a href="Goals.html" class="BackHome">&larr; Back</a>
+    </section>
+  </main> -->
+  
+  <script src="Goals.js" ></script>
+</body>
+
+</html>
