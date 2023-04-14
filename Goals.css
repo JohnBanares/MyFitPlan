@@ -53,7 +53,46 @@ main{
 .AddButton {
     margin-right: 150px;
 }
+/*
+to dynamically add goals without overlap 
+.container{
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.GoalsList{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
+  text-align: center;
+  padding: 10px;
+}
+
+.goals{
+  width: 100%;
+  max-width: 450px;
+  margin-bottom: 10px;
+  height: auto;
+  background-color: #D6D7D9;
+  padding: 20px 15px 15px 15px;
+  text-align: center;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 4px;
+  border-color: black;
+  color: black;
+  font-weight: bold;
+  font-size:small;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;  
+}
+ */
 
 /* 
 *{
