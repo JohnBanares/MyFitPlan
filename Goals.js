@@ -98,6 +98,9 @@ const renderCalendar = () => {
       console.log(day.innerHTML);
       console.log(months[date.getMonth()]); //0 = jan, 1 = feb, 2 = march
       console.log(date.getFullYear()); 
+      const selectedDate = `${day.innerHTML} ${months[date.getMonth()]} ${date.getFullYear()}`;
+      document.querySelector("#selectedDate").value = selectedDate;
+      console.log(selectedDate);
       dayElements.forEach(day => {
           day.classList.remove('selected');
           day.classList.remove('today');
