@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,14 +20,45 @@
   </header>
 
   <main>
-    <form method="POST" action="submit.php" autocomplete="off">
+	<?php
+		$servername = "localhost";
+		$username ="root";
+		$password="";
+		$dbname = "MyFitPlan";
+
+		//create connection
+		$conn = new mysqli($servername,$username,$password,$dbname);
+		//check connection
+		if($conn->connect_error) {
+			die("Connection Failed: " . $conn->connect_error);
+		}
+		
+		$_SESSION["UserName"] = "testname";
+		
+		//Inserts new row into the reserve_table (ISBN, UserName and Date) 
+		if ( isset($_POST['selectedDate']) && isset($_POST['goaltext']) ) {
+			$uid = $_SESSION["UserName"];
+			$t = $_POST['goaltext'];
+			$d = $_POST['selectedDate'];
+			$s = 0;
+			$sql = "INSERT INTO goals (userName, goal_text, goal_date, goal_status) VALUES ('$uid','$t' ,'$d', '$s')";
+			if ($conn->query($sql) === TRUE) {
+				header("Location: Goals.php");
+			}
+			else {
+				echo "Error: " . $sql . "<br>" . $conn->error;
+			}
+		}
+		$conn->close();
+		?>
+    <form method="post" autocomplete="off">
       <p class="instructions">1. Pick a day to set a goal</p>
       <div class="holder">
         <div class="calendar">
           <div class="month">
             <i class="fas fa-angle-left prev"></i>
             <div class="date">
-              <h1></h1>
+              <h1></h1> 
               <p></p>
             </div>
             <i class="fas fa-angle-right next"></i>
@@ -51,7 +81,7 @@
       <input type="text" id="gtext" name="goaltext" placeholder="">
       
       <div class="BottomGoalsAddButtons">
-        <a href="Goals.html" class="back">&larr; Back</a>
+        <a href="Goals.php" class="back">&larr; Back</a>
         <button type="submit" class="confirm">&check; Confirm</button>
       </div>
     </form>
@@ -116,7 +146,7 @@
     </section>
   </main> -->
   
-  <script src="Goals.js" ></script>
+  <script src="GoalsCalander.js" ></script>
 </body>
 
 </html>

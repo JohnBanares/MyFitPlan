@@ -1,113 +1,102 @@
-// // Get all buttons with class "my-button"
-// const button = document.querySelector(".goals");
+const date = new Date();
 
-// button.addEventListener("click",  () => {
-//     console.log('Button clicked!');
-// });
-/*
-var toggle = true;
-const buttons = document.querySelectorAll('.goals');
+const renderCalendar = () => {
+  date.setDate(1);
 
-buttons.forEach(function(button) {
-  button.addEventListener('click', function() {
-    if (toggle) {
-      button.style.backgroundColor = "#D6D7D9";
-      button.dataset.value = "notcompleted";
+  const monthDays = document.querySelector(".days");
+
+  const lastDay = new Date(
+    date.getFullYear(),
+    date.getMonth() + 1,
+    0
+  ).getDate();
+
+  const prevLastDay = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    0
+  ).getDate();
+
+  const firstDayIndex = date.getDay();
+
+  const lastDayIndex = new Date(
+    date.getFullYear(),
+    date.getMonth() + 1,
+    0
+  ).getDay();
+
+  const nextDays = 7 - lastDayIndex - 1;
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  document.querySelector(".date h1").innerHTML = months[date.getMonth()];
+
+  document.querySelector(".date p").innerHTML = "Today: " + new Date().toDateString();
+
+  let days = "";
+
+  for (let x = firstDayIndex; x > 0; x--) {
+    days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
+  }
+
+  for (let i = 1; i <= lastDay; i++) {
+    if (
+      i === new Date().getDate() &&
+      date.getMonth() === new Date().getMonth()
+    ) {
+      days += `<div class="today">${i}</div>`;
     } else {
-      button.style.backgroundColor = '#94BFA2';
-      button.dataset.value = "completed";
+      days += `<div>${i}</div>`;
     }
-    toggle = !toggle;
+  }
+
+  for (let j = 1; j <= nextDays; j++) {
+    days += `<div class="next-date">${j}</div>`;
+    monthDays.innerHTML = days;
+  }
+
+  const dayElements = monthDays.querySelectorAll('div');
+  dayElements.forEach(day => {
+    day.addEventListener('click', () => {
+      console.log(day.innerHTML);
+      console.log(months[date.getMonth()]); //0 = jan, 1 = feb, 2 = march
+      console.log(date.getFullYear()); 
+      const selectedDate = `${day.innerHTML} ${months[date.getMonth()]} ${date.getFullYear()}`;
+      document.querySelector("#selectedDate").value = selectedDate;
+      console.log(selectedDate);
+      dayElements.forEach(day => {
+          day.classList.remove('selected');
+          day.classList.remove('today');
+        });
+        day.classList.add('selected');
+    });
   });
-});*/
-var checkstatus = document.getElementsByClassName("goals");
-var find = /\bCompleted\b/i;
-for(var i =0; i < checkstatus.length; i++) {
-	var checkEach = checkstatus[i];
-	if(find.test(checkEach.innerHTML)) {
-		checkEach.style.backgroundColor = '#94BFA2';
-	}
-	else {
-		checkEach.style.backgroundColor = '#D6D7D9';
-	}
-}
+};
 
-var goalButtons = document.getElementsByClassName("goals");
-for(var i = 0; i < goalButtons.length; i++) 
-{
-	var button = goalButtons[i];
-	console.log(button.innerHTML);
-	button.addEventListener('click', function(event) 
-	{
-		var buttonclicked = event.target;
-	    console.log(buttonclicked.innerHTML);
-		event.preventDefault();
-		var goalId = buttonclicked.getAttribute("data-GoalId");
-		var goalStatus = buttonclicked.getAttribute("data-GoalStatus");
-		console.log(goalId);
-		console.log(goalStatus);
-		
-		/*if(goalStatus  == 0) 
-		{
-			console.log(buttonclicked.innerHTML.slice(16));
-			buttonclicked.setAttribute("data-GoalStatus", 1);
-			console.log(goalStatus);
-			//buttonclicked.innerHTML = "Completed: &check;" + buttonclicked.innerHTML.slice(16);
-			buttonclicked.style.backgroundColor = '#94BFA2';
-		}
-		else 
-		{
-			console.log(buttonclicked.innerHTML.slice(18));
-			buttonclicked.setAttribute("data-GoalStatus", 0);
-			console.log(goalStatus);
-			//buttonclicked.innerHTML = "To be Completed:" + buttonclicked.innerHTML.slice(16);
-			buttonclicked.style.backgroundColor = '#D6D7D9'
-		}*/
-			
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST', 'test.php', true);
-		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		xhr.onreadystatechange = function() 
-		{
-			if(xhr.readyState == 4 && xhr.status == 200) 
-			{
-				console.log(xhr.responseText);
-				if(goalStatus  == 0) 
-				{
-					console.log(buttonclicked.innerHTML.slice(16));
-					buttonclicked.setAttribute("data-GoalStatus", 1);
-					console.log(goalStatus);
-					//buttonclicked.innerHTML = "Completed: &check;" + buttonclicked.innerHTML.slice(16);
-					buttonclicked.style.backgroundColor = '#94BFA2';
-				}
-				else 
-				{
-					console.log(buttonclicked.innerHTML.slice(18));
-					buttonclicked.setAttribute("data-GoalStatus", 0);
-					console.log(goalStatus);
-					//buttonclicked.innerHTML = "To be Completed:" + buttonclicked.innerHTML.slice(16);
-					buttonclicked.style.backgroundColor = '#D6D7D9'
-				}
-			}
-			
-		}
-		xhr.send('task_id=' + goalId + '&goal_status=' + goalStatus);
-	});
-}
-/*
-var testbutton = document.getElementById("task");
-testbutton.addEventListener('click', function(event) {
-	console.log('hey');
-	event.preventDefault();
-	var value = 1;
-	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'test.php', true);
-	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	xhr.send('task_id=' + value);
-})*/
+document.querySelector(".prev").addEventListener("click", () => {
+  date.setMonth(date.getMonth() - 1);
+  renderCalendar();
+});
 
+document.querySelector(".next").addEventListener("click", () => {
+  date.setMonth(date.getMonth() + 1);
+  renderCalendar();
+});
 
-
+renderCalendar();
 
 
 
@@ -372,4 +361,4 @@ testbutton.addEventListener('click', function(event) {
 // var test1 = document.getElementById("test");
 // test1.addEventListener("click", function() {
 //     alert("Hello, World!");
-// });
+//   });
